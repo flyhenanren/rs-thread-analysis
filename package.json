@@ -1,0 +1,33 @@
+{
+  "name": "rs-native",
+  "version": "0.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "napi": {
+    "name": "rs-native",
+    "triples": {}
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.4",
+    "ava": "^6.1.3"
+  },
+  "ava": {
+    "timeout": "3m",
+    "files": [
+      "__test__/*"
+    ]
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "ava --verbose",
+    "universal": "napi universal",
+    "version": "napi version"
+  }
+}

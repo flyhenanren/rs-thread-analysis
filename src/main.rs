@@ -1,13 +1,19 @@
-use std::time::{Duration, Instant};
+use std::fs::File;
+use std::io::{Write, BufReader, BufRead, Error};
 
-fn main() {
-    let mut a:i128 = 0;
-    let start = Instant::now();
-    for i in 1..=500000000 {
-        a = a + i;
+fn main()  -> Result<(), Error> {
+    let path: &str = "path.txt";
+
+    let mut output = File::create(path)?;
+    write!(output, "Rust\n💖\nFun")?;
+
+
+    let input: File = File::open(path)?;
+    let buffered = BufReader::new(input);
+
+    for line in buffered.lines() {
+        println!("{}", line?);
     }
-    let duration: Duration = start.elapsed();
 
-    println!("Time elapsed in expensive_function() is: {:?}", duration);
-
+    Ok(())
 }
